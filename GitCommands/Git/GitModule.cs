@@ -622,7 +622,9 @@ namespace GitCommands
                 {
                     if (line.StartsWith("gitdir:"))
                     {
-                        string path = line.Substring(7).Trim().Replace('/', '\\');
+                        string path = line.Substring(7).Trim();
+                        if( path[1] == ':' ) // indicator that it is an windows style path
+                            path = path.Replace('/', '\\');
                         return path + Settings.PathSeparator;
                     }
                 }
